@@ -1,0 +1,568 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Nur Viktorina</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: markaziy shisha karta, tepada ixcham statistika, pastda muallif nomi. Dizayn bitta, chuqur yashil dunyo (yagona mavzu). */
+:root {
+  --ink: #04201a;
+  --pine: #0a3a2d;
+  --moss: #15664d;
+  --gold: #dcb865;
+  --gold-soft: #f2e0a6;
+  --cream: #f7f0dd;
+  --cream-dim: #cfd6c4;
+  --ok: #38d08c;
+  --bad: #f0675c;
+  --glass: rgba(247, 240, 221, 0.07);
+  --glass-line: rgba(220, 184, 101, 0.28);
+  --font-body: "Poppins", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-arab: "Amiri", "Traditional Arabic", serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { min-height: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--cream);
+  background:
+    radial-gradient(900px 520px at 85% -10%, rgba(21, 102, 77, 0.65), transparent 60%),
+    radial-gradient(700px 480px at -10% 105%, rgba(220, 184, 101, 0.16), transparent 60%),
+    linear-gradient(160deg, var(--pine), var(--ink) 70%);
+  background-color: var(--ink);
+  background-attachment: fixed;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 20px 76px;
+  position: relative;
+  overflow-x: hidden;
+}
+/* Nozik geometrik naqsh */
+body::before {
+  content: "";
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  opacity: 0.1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='88' viewBox='0 0 88 88'%3E%3Cg fill='none' stroke='%23dcb865' stroke-width='1'%3E%3Crect x='22' y='22' width='44' height='44'/%3E%3Crect x='22' y='22' width='44' height='44' transform='rotate(45 44 44)'/%3E%3Ccircle cx='44' cy='44' r='10'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 88px 88px;
+  -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 20%, transparent 85%);
+  mask-image: radial-gradient(ellipse at 50% 30%, #000 20%, transparent 85%);
+}
+.wrap { position: relative; z-index: 1; width: 100%; max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+
+header { display: flex; flex-direction: column; align-items: center; gap: 2px; padding-top: 4px; text-align: center; }
+.bismillah { font-family: var(--font-arab); font-size: clamp(1.4rem, 4.5vw, 1.9rem); color: var(--gold); line-height: 1.5; }
+h1 { margin: 0; font-size: clamp(1.35rem, 4.6vw, 1.8rem); font-weight: 700; letter-spacing: 0.02em; text-wrap: balance; }
+.sub { margin: 0; font-size: 0.8rem; color: var(--cream-dim); letter-spacing: 0.08em; text-transform: uppercase; }
+
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.stat { background: var(--glass); border: 1px solid var(--glass-line); border-radius: 16px; padding: 10px 12px; text-align: center; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); min-width: 0; }
+.stat b { display: block; font-size: 1.35rem; font-weight: 700; color: var(--gold-soft); font-variant-numeric: tabular-nums; }
+.stat span { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cream-dim); }
+.pop { animation: pop 0.4s ease; }
+@keyframes pop { 40% { transform: scale(1.12); } }
+
+.card {
+  background: linear-gradient(160deg, rgba(247, 240, 221, 0.1), rgba(247, 240, 221, 0.04));
+  border: 1px solid var(--glass-line);
+  border-radius: 28px;
+  padding: clamp(18px, 4vw, 30px);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  display: flex; flex-direction: column; gap: 18px;
+}
+.meta { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.chip { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); background: linear-gradient(135deg, var(--gold-soft), var(--gold)); padding: 5px 12px; border-radius: 999px; }
+.count { font-size: 0.78rem; color: var(--cream-dim); font-variant-numeric: tabular-nums; }
+.bar { height: 5px; border-radius: 99px; background: rgba(247, 240, 221, 0.12); overflow: hidden; }
+.bar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--gold), var(--gold-soft)); transition: width 0.5s ease; }
+
+.q { margin: 0; font-size: clamp(1.15rem, 3.8vw, 1.55rem); font-weight: 600; line-height: 1.4; text-wrap: balance; overflow-wrap: anywhere; }
+.answers { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr)); gap: 12px; }
+.ans {
+  appearance: none; font: inherit; color: var(--cream); text-align: left; cursor: pointer;
+  display: flex; align-items: center; gap: 12px; min-height: 64px; min-width: 0;
+  padding: 12px 14px; border-radius: 18px;
+  background: rgba(4, 32, 26, 0.55); border: 1.5px solid var(--glass-line);
+  transition: transform 0.15s ease, border-color 0.2s ease, background 0.2s ease, opacity 0.25s ease;
+}
+.ans span.t { overflow-wrap: anywhere; line-height: 1.35; font-weight: 500; }
+.ans .k { flex: none; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 0.9rem; color: var(--gold-soft); border: 1.5px solid var(--gold); transition: inherit; }
+.ans:hover:not(:disabled) { transform: translateY(-2px); border-color: var(--gold); background: rgba(21, 102, 77, 0.45); }
+.ans:active:not(:disabled) { transform: scale(0.98); }
+.ans:focus-visible, .next:focus-visible { outline: 3px solid var(--gold-soft); outline-offset: 3px; }
+.ans:disabled { cursor: default; }
+.ans.correct { background: rgba(56, 208, 140, 0.22); border-color: var(--ok); }
+.ans.correct .k { background: var(--ok); border-color: var(--ok); color: var(--ink); }
+.ans.wrong { background: rgba(240, 103, 92, 0.2); border-color: var(--bad); animation: shake 0.35s; }
+.ans.wrong .k { background: var(--bad); border-color: var(--bad); color: var(--ink); }
+.ans.dim { opacity: 0.45; }
+@keyframes shake { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+
+.explain { display: none; gap: 12px; flex-direction: column; border-top: 1px solid var(--glass-line); padding-top: 16px; }
+.explain.show { display: flex; animation: rise 0.35s ease; }
+.explain p { margin: 0; font-size: 0.95rem; line-height: 1.55; color: var(--cream-dim); }
+.explain p strong { color: var(--gold-soft); font-weight: 600; }
+.next {
+  appearance: none; border: 0; font: inherit; font-weight: 600; font-size: 1rem; cursor: pointer;
+  align-self: stretch; min-height: 52px; padding: 12px 22px; border-radius: 16px;
+  color: var(--ink); background: linear-gradient(135deg, var(--gold-soft), var(--gold));
+  box-shadow: 0 10px 24px rgba(220, 184, 101, 0.28);
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+.next:hover { transform: translateY(-2px); box-shadow: 0 14px 28px rgba(220, 184, 101, 0.38); }
+.next:active { transform: scale(0.98); }
+@media (min-width: 520px) { .next { align-self: flex-end; } }
+
+.swap-out { animation: out 0.22s ease forwards; }
+.swap-in { animation: rise 0.4s ease; }
+@keyframes out { to { opacity: 0; transform: translateX(-18px); } }
+@keyframes rise { from { opacity: 0; transform: translateY(12px); } }
+
+.author {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 2; pointer-events: none;
+  padding: 10px max(16px, env(safe-area-inset-right, 0px)) calc(12px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+  text-align: center; font-size: 0.8rem; letter-spacing: 0.08em; color: var(--gold-soft); opacity: 0.72;
+  background: linear-gradient(to top, rgba(4, 32, 26, 0.85), transparent);
+}
+.author b { font-weight: 600; }
+
+#loader { position: fixed; inset: 0; z-index: 10; display: flex; flex-direction: column; gap: 22px; align-items: center; justify-content: center; background: var(--ink); transition: opacity 0.5s ease, visibility 0.5s; }
+#loader.done { opacity: 0; visibility: hidden; }
+.star { position: relative; width: 64px; height: 64px; animation: spin 3s linear infinite; }
+.star::before, .star::after { content: ""; position: absolute; inset: 0; border: 2px solid var(--gold); border-radius: 6px; }
+.star::after { transform: rotate(45deg); }
+@keyframes spin { to { transform: rotate(360deg); } }
+#loader p { margin: 0; font-size: 0.9rem; letter-spacing: 0.1em; color: var(--cream-dim); }
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+</style>
+
+<div id="loader" role="status"><div class="star"></div><p>Savollar tayyorlanmoqda...</p></div>
+
+<div class="wrap">
+  <header>
+    <div class="bismillah" lang="ar" dir="rtl">بسم الله الرحمن الرحيم</div>
+    <h1>Nur Viktorina</h1>
+    <p class="sub">Islomiy bilimlar sinovi</p>
+  </header>
+
+  <section class="stats" aria-label="Natijalar">
+    <div class="stat"><b id="score">0</b><span>Ball</span></div>
+    <div class="stat"><b id="streak">0</b><span>Seriya</span></div>
+    <div class="stat"><b id="best">0</b><span>Rekord</span></div>
+  </section>
+
+  <main class="card" id="card">
+    <div class="meta"><span class="chip" id="cat"></span><span class="count" id="count"></span></div>
+    <div class="bar" aria-hidden="true"><i id="bar"></i></div>
+    <h2 class="q" id="q"></h2>
+    <div class="answers" id="answers"></div>
+    <div class="explain" id="explain">
+      <p id="expText"></p>
+      <button class="next" id="next" type="button">Keyingi savol</button>
+    </div>
+  </main>
+</div>
+
+<div class="author">Muallif: <b>Muhammad Muso</b></div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ===== Sozlamalar ===== */
+  // Internetdan savol oladigan JSON manzillar. Format: [{c,q,a,w:[3 ta xato],e}]. Bo'sh yoki ishlamasa, zaxira baza ishlaydi.
+  var REMOTE_SOURCES = [];
+  var POINTS = 10;
+  var KEY = { seen: "nur.seen.v1", best: "nur.best.v1", bestStreak: "nur.bestStreak.v1" };
+
+  /* ===== Zaxira baza: [bo'lim, savol, to'g'ri javob, "xato1|xato2|xato3", izoh] ===== */
+  var D = [
+    // --- Aqida ---
+    ["Aqida","Iymonning nechta rukni bor?","6","4|5|7","Allohga, farishtalarga, kitoblarga, payg'ambarlarga, oxirat kuniga va qadarga iymon keltirish."],
+    ["Aqida","Islomning ustunlari nechta?","5","4|6|7","Shahodat, namoz, zakot, ro'za va haj."],
+    ["Aqida","Alloh taoloning yagonaligiga ishonish nima deyiladi?","Tavhid","Shirk|Nifoq|Zakot","Tavhid Allohni zotida, sifatlarida va ibodatda yagona deb bilishdir."],
+    ["Aqida","Alloh taologa sherik qo'shish nima deyiladi?","Shirk","Tavhid|Taqvo|Ixlos","Shirk eng katta gunohdir."],
+    ["Aqida","Payg'ambarlarga vahiy keltirgan farishta kim?","Jabroil","Mikoil|Isrofil|Azroil","Jabroil alayhissalom vahiy elchisidir."],
+    ["Aqida","Qiyomat kuni Sur chaladigan farishta kim?","Isrofil","Jabroil|Mikoil|Azroil","Isrofil alayhissalom Sur chalishga buyurilgan."],
+    ["Aqida","Yomg'ir va rizqqa vakil qilingan farishta kim?","Mikoil","Jabroil|Isrofil|Azroil","Mikoil alayhissalom tabiat va rizq ishlariga vakildir."],
+    ["Aqida","Jonni oluvchi farishta kim?","Azroil","Mikoil|Isrofil|Ridvon","Azroil, ya'ni Malakul mavt jonlarni qabz qiladi."],
+    ["Aqida","Jannat qo'riqchisi bo'lgan farishta kim?","Ridvon","Molik|Munkar|Nakir","Molik esa do'zax xazinabonidir."],
+    ["Aqida","Qabrda savol beruvchi farishtalar qaysilar?","Munkar va Nakir","Horut va Morut|Kiromon va Kotibin|Jabroil va Mikoil","Ular marhumdan Rabbi, dini va payg'ambari haqida so'raydi."],
+    ["Aqida","Inson amallarini yozib boruvchi farishtalar qanday ataladi?","Kiromon kotibin","Munkar va Nakir|Horut va Morut|Zabaniya","Har bir kishining o'ng va chap yelkasida bittadan farishta bor."],
+    ["Aqida","Zabur kitobi qaysi payg'ambarga nozil qilingan?","Dovud alayhissalom","Muso alayhissalom|Iso alayhissalom|Ibrohim alayhissalom","Zabur Dovud alayhissalomga berilgan."],
+    ["Aqida","Tavrot kitobi qaysi payg'ambarga nozil qilingan?","Muso alayhissalom","Dovud alayhissalom|Iso alayhissalom|Yusuf alayhissalom","Tavrot Muso alayhissalomga nozil bo'lgan."],
+    ["Aqida","Injil kitobi qaysi payg'ambarga nozil qilingan?","Iso alayhissalom","Muso alayhissalom|Dovud alayhissalom|Zakariyo alayhissalom","Injil Iso alayhissalomga berilgan."],
+    ["Aqida","Qur'on qaysi payg'ambarga nozil qilingan?","Muhammad sollallohu alayhi vasallam","Iso alayhissalom|Muso alayhissalom|Ibrohim alayhissalom","Qur'on oxirgi payg'ambarga nozil bo'lgan."],
+    ["Aqida","Alloh taoloning go'zal ismlari mashhur rivoyatda nechta?","99","70|100|110","Hadisda Allohning to'qson to'qqizta ismi borligi aytilgan."],
+    ["Aqida","Hanafiy aqida maktabi (Moturidiya) asoschisi kim?","Abu Mansur al-Moturidiy","Abul Hasan al-Ash'ariy|Ibn Taymiya|Imom G'azzoliy","Imom Moturidiy Samarqandda yashab ijod qilgan."],
+    ["Aqida","Oxirgi payg'ambar kim?","Muhammad sollallohu alayhi vasallam","Iso alayhissalom|Muso alayhissalom|Ibrohim alayhissalom","Undan keyin payg'ambar kelmaydi."],
+    ["Aqida","Kalimai shahodat qaysi so'zlar bilan boshlanadi?","Ashhadu alla ilaha illalloh","Subhanalloh|Alhamdulillah|Astag'firulloh","Kalimai shahodat iymonning kirish eshigidir."],
+    ["Aqida","Oxiratga iymon nimani o'z ichiga oladi?","Qabr, qiyomat, hisob-kitob, jannat va do'zaxni","Faqat jannatni|Faqat qabrni|Faqat hisob-kitobni","Bularning hammasiga ishonish iymon shartidir."],
+
+    // --- Namoz ---
+    ["Namoz","Kuniga necha vaqt farz namoz o'qiladi?","5","3|4|6","Bomdod, peshin, asr, shom va xufton."],
+    ["Namoz","Bomdod namozining farzi necha rakat?","2","3|4|1","Bomdod farzi ikki rakatdir."],
+    ["Namoz","Peshin namozining farzi necha rakat?","4","2|3|5","Peshin farzi to'rt rakat."],
+    ["Namoz","Asr namozining farzi necha rakat?","4","2|3|6","Asr farzi to'rt rakat."],
+    ["Namoz","Shom namozining farzi necha rakat?","3","2|4|5","Shom kunduzgi vitr kabi uch rakat."],
+    ["Namoz","Xufton namozining farzi necha rakat?","4","2|3|5","Xufton farzi to'rt rakat."],
+    ["Namoz","Juma namozining farzi necha rakat?","2","4|3|6","Juma peshin o'rniga o'qiladi, farzi ikki rakat."],
+    ["Namoz","Hanafiy mazhabida vitr namozining hukmi qanday?","Vojib","Farz|Sunnat|Mustahab","Imom A'zamga ko'ra vitr vojibdir."],
+    ["Namoz","Hanafiy mazhabida vitr namozi necha rakat?","3","1|2|4","Vitr uch rakat bo'lib, bir salom bilan o'qiladi."],
+    ["Namoz","Hanafiy mazhabida vitrdagi qunut duosi qachon o'qiladi?","Uchinchi rakatda ruku'dan oldin","Ruku'dan keyin|Birinchi rakatda|Salomdan keyin","Uchinchi rakatda qiroatdan so'ng takbir aytib, qunut o'qiladi."],
+    ["Namoz","Namozni boshlash uchun aytiladigan takbir nima deyiladi?","Takbiri tahrima","Takbiri ruku'|Takbiri hayit|Takbiri tashriq","Bu takbirdan so'ng namozdan tashqari ishlar harom bo'ladi."],
+    ["Namoz","Hanafiy mazhabida erkaklar qo'llarini namozda qayerga bog'laydi?","Kindik ostiga","Ko'krak ustiga|Bo'yin ostiga|Yon tomonga tushiradi","Erkaklar o'ng qo'lini chap qo'li ustiga kindik ostida qo'yadi."],
+    ["Namoz","Hanafiy mazhabida jamoat namozida muqtadiy imom ortida nima qiladi?","Sukut saqlaydi, imomning qiroati unga yetarli","Fotihani baland o'qiydi|Faqat Ixlos o'qiydi|Qunut o'qiydi","Hanafiylarda imom ortida qiroat qilinmaydi."],
+    ["Namoz","Hanafiy mazhabida namozning shartlari nechta?","6","4|5|8","Hadasdan va najosatdan pok bo'lish, avratni yopish, qibla, vaqt va niyat."],
+    ["Namoz","Hanafiy mazhabida erkak kishining namozdagi avrati qayer?","Kindik ostidan tizzagacha (tizza ham kiradi)","Ko'krakdan tizzagacha|Yelkadan tizzagacha|Faqat ikki uyat joyi","Kindik avratga kirmaydi, tizza kiradi."],
+    ["Namoz","Hanafiy mazhabida ayol namozda qaysi a'zolarini ochiq qoldirishi mumkin?","Yuz, ikki kaft va ikki oyoq kafti","Faqat ko'zlar|Yuz va sochlar|Hech birini","Qolgan butun badan avrat hisoblanadi."],
+    ["Namoz","Bomdod sunnatining rakat soni nechta?","2","4|1|3","Bomdod sunnati sunnatlarning eng kuchlisidir."],
+    ["Namoz","Hanafiy mazhabida peshin farzidan oldingi sunnati muakkada necha rakat?","4","2|3|6","Peshinda farzdan oldin 4, keyin 2 rakat sunnat muakkada bor."],
+    ["Namoz","Hanafiy mazhabida tarovih namozi necha rakat?","20","8|12|36","Tarovih Ramazon oyida xufton bilan vitr orasida 20 rakat o'qiladi."],
+    ["Namoz","Hanafiy mazhabida hayit namozining hukmi qanday?","Vojib","Farz|Sunnat|Nafl","Hayit namozi Hanafiylarda vojibdir."],
+    ["Namoz","Hanafiy mazhabida hayit namozida ziyoda takbirlar soni nechta?","6","2|4|12","Har rakatda uchtadan ziyoda takbir aytiladi."],
+    ["Namoz","Janoza namozida takbirlar soni nechta?","4","2|3|5","Janozada to'rt takbir bor."],
+    ["Namoz","Janoza namozining hukmi qanday?","Farzi kifoya","Farzi ayn|Sunnat|Mustahab","Bir qism musulmon o'qisa, qolganlardan soqit bo'ladi."],
+    ["Namoz","Janoza namozi qanday o'qiladi?","Tik turib, ruku' va sajdasiz","Ruku' bilan, sajdasiz|Sajdalar bilan|O'tirib","Janozada ruku', sajda va qa'da yo'q."],
+    ["Namoz","Hanafiy mazhabida musofir to'rt rakatli farzni necha rakat o'qiydi?","2","1|3|4","Musofirga qasr vojibdir."],
+    ["Namoz","Hanafiy mazhabida bir joyda necha kun turishga niyat qilgan kishi muqim bo'ladi?","15 kun","3 kun|5 kun|10 kun","15 kun va undan ortiq turmoqchi bo'lsa muqim hisoblanadi."],
+    ["Namoz","Namozda vojib unutilsa nima qilinadi?","Sajdai sahv qilinadi","Hech narsa qilinmaydi|Kaffora beriladi|Namoz tark etiladi","Oxirgi qa'dada bir tomonga salom berib, ikki sajda qilinadi."],
+    ["Namoz","Hanafiy mazhabida azon necha kalimadan iborat?","15","11|17|19","Iqomat esa 17 kalimadan iborat."],
+    ["Namoz","Bomdod azoniga qo'shiladigan kalima qaysi?","Assalatu xayrun minan-navm","Hayya alal xayril amal|Sallu alan-nabiy|Qad qomatis-salah","Bu kalima 'namoz uyqudan yaxshiroq' degan ma'noni beradi."],
+    ["Namoz","Juma namozi qaysi vaqtda o'qiladi?","Peshin vaqtida","Bomdod vaqtida|Asr vaqtida|Shom vaqtida","Juma peshin vaqtida o'qiladi."],
+    ["Namoz","Namozdan nima bilan chiqiladi?","Ikki tomonga salom berish bilan","Takbir bilan|Sajda bilan|Qunut bilan","Salomdan keyin namoz tugaydi."],
+    ["Namoz","Hanafiy mazhabida namozda 'Omin' qanday aytiladi?","Sekin","Baland ovozda|Aytilmaydi|Faqat imom aytadi","Hanafiylarda 'Omin' ichda aytiladi."],
+
+    // --- Tahorat ---
+    ["Tahorat","Hanafiy mazhabida tahoratning farzlari nechta?","4","3|5|6","Yuzni yuvish, qo'llarni tirsak bilan yuvish, boshning choragini masah qilish va oyoqlarni to'piq bilan yuvish."],
+    ["Tahorat","Hanafiy mazhabida boshning qancha qismini masah qilish farz?","To'rtdan bir qismini","Hammasini|Yarmini|Uchdan birini","Boshning choragini masah qilish farzdir."],
+    ["Tahorat","Tahoratda qo'llar qayergacha yuviladi?","Tirsak bilan birga","Bilakkacha|Tirsakkacha, tirsaksiz|Yelkagacha","Tirsaklar ham yuviladigan joyga kiradi."],
+    ["Tahorat","Tahoratda oyoqlar qayergacha yuviladi?","To'piq bilan birga","Boldirgacha|Tizzagacha|Panjagacha","To'piqlar ham yuviladi."],
+    ["Tahorat","Quyidagilardan qaysi biri tahoratni buzadi?","Old yoki orqa yo'ldan biror narsa chiqishi","Gapirish|Soch olish|Ko'zni yumish","Siydik, najas, yel chiqishi tahoratni buzadi."],
+    ["Tahorat","Hanafiy mazhabida ruku' va sajdali namozda qahqaha otib kulish nimani buzadi?","Namozni ham, tahoratni ham","Faqat namozni|Faqat tahoratni|Hech narsani","Qahqaha namozni va tahoratni buzadi."],
+    ["Tahorat","Tayammumda necha marta qo'l uriladi?","2 marta","1 marta|3 marta|4 marta","Birinchisi yuz, ikkinchisi qo'llar uchun."],
+    ["Tahorat","Tayammum qachon joiz bo'ladi?","Suv topilmasa yoki ishlatishga imkon bo'lmasa","Har doim|Uyqudan keyin|Sovuq paytda istalgan vaqt","Tayammum suv o'rniga o'tadi."],
+    ["Tahorat","Hanafiy mazhabida g'uslning farzlari nechta?","3","2|4|5","Og'izni chayish, burunga suv tortish va butun badanni yuvish."],
+    ["Tahorat","Quyidagilardan qaysi biri g'uslni vojib qiladi?","Janobat, hayz va nifos","Uyqu|Qusish|Burundan qon kelishi","Bular katta hadas hisoblanadi."],
+    ["Tahorat","Muqim kishi maxsiy ustiga necha vaqt masah qila oladi?","1 kecha-kunduz","3 kecha-kunduz|7 kun|Cheklanmagan","Musofir uchun muddat 3 kecha-kunduzdir."],
+    ["Tahorat","Musofir maxsi ustiga necha vaqt masah qila oladi?","3 kecha-kunduz","1 kecha-kunduz|5 kun|Cheklanmagan","Muqim uchun bir kecha-kunduz."],
+    ["Tahorat","Tahoratni nima bilan boshlash sunnat?","Bismilloh va qo'llarni bilakkacha yuvish","Yuzni yuvish|Oyoqlarni yuvish|Boshni masah qilish","Avval niyat, bismilloh, so'ng qo'llar yuviladi."],
+    ["Tahorat","Tahoratda og'izni tozalash uchun sunnat qilingan vosita qaysi?","Misvok","Sovun|Tuz|Qum","Payg'ambarimiz misvokka juda ahamiyat berganlar."],
+    ["Tahorat","Hanafiy mazhabida ayolga shahvatsiz tegish tahoratga ta'sir qiladimi?","Ta'sir qilmaydi","Buzadi|Faqat kechasi buzadi|Faqat namozda buzadi","Bu masalada Hanafiy mazhabi hukmi shunday."],
+
+    // --- Ro'za ---
+    ["Ro'za","Ramazon hijriy yilning nechanchi oyi?","To'qqizinchi","Sakkizinchi|O'ninchi|Birinchi","Sha'bondan keyin Ramazon keladi."],
+    ["Ro'za","Ro'za kuni qachon boshlanadi?","Tong yorishishi (subhi sodiq)dan","Quyosh chiqishidan|Peshindan|Bomdod azonidan bir soat keyin","Saharlik tong yorishguncha davom etadi."],
+    ["Ro'za","Ro'za qachon ochiladi?","Quyosh botganda","Xufton vaqtida|Shom azonidan bir soat keyin|Tun yarmida","Quyosh botishi bilan iftor qilinadi."],
+    ["Ro'za","Unutib yeb-ichish ro'zaga qanday ta'sir qiladi?","Ro'zani buzmaydi","Ro'zani buzadi va kaffora lozim|Ro'zani buzadi, qazo lozim|Yarim ro'za bo'ladi","Unutib yeb-ichgan ro'zasini davom ettiradi."],
+    ["Ro'za","Hanafiy mazhabida Ramazon ro'zasini ataylab buzishning kafforati qaysi?","Ketma-ket 60 kun ro'za tutish","10 kun ro'za|30 kun ro'za|Bir hafta ro'za","Qul ozod qilish yoki 60 miskinni to'ydirish ham kaffora turlaridan."],
+    ["Ro'za","Hanafiy mazhabida Ramazon ro'zasining niyatini qachongacha qilish mumkin?","Quyosh zavolidan oldingacha","Faqat tunda|Peshin namozidan keyin|Iftorgacha","Tunda yoki kunduzi zavolgacha niyat qilinadi."],
+    ["Ro'za","Laylatul qadrda nima ro'y bergan?","Qur'on nozil bo'la boshlagan","Hijrat qilingan|Badr jangi bo'lgan|Ka'ba qurilgan","Laylatul qadr ming oydan yaxshidir."],
+    ["Ro'za","Laylatul qadr qaysi paytda izlanadi?","Ramazonning oxirgi o'n kunida","Rajab oyida|Sha'bon oyida|Zulhijja oyida","Ayniqsa oxirgi o'n kunning toq kechalarida."],
+    ["Ro'za","Hayit kunlari ro'za tutish qanday hukmda?","Mumkin emas","Savobli|Sunnat|Vojib","Ramazon va Qurbon hayiti kunlari ro'za tutilmaydi."],
+    ["Ro'za","Hanafiy mazhabida sadaqai fitrning hukmi qanday?","Vojib","Farz|Sunnat|Nafl","Hayit namozidan oldin ado etish afzal."],
+    ["Ro'za","Ramazonning oxirgi o'n kunida qilinadigan sunnat ibodat qaysi?","Itikof","Umra|Zakot|Haj","Itikof masjidda ibodat niyatida to'xtashdir."],
+    ["Ro'za","Hayz ko'rgan ayol Ramazonda ro'za bo'yicha nima qiladi?","Tutmaydi, keyin qazo qiladi","Tutadi|Qazosi yo'q|Kaffora beradi","Hayz paytida ro'za tutish mumkin emas."],
+    ["Ro'za","Iftorni nima bilan ochish sunnat?","Xurmo yoki suv bilan","Go'sht bilan|Osh bilan|Non bilan","Payg'ambarimiz namozdan oldin xurmo bilan iftor qilganlar."],
+    ["Ro'za","Hanafiy mazhabida qasddan og'iz to'la qusish ro'zaga qanday ta'sir qiladi?","Ro'zani buzadi, qazo lozim","Ta'sir qilmaydi|Kaffora lozim|Faqat tahoratni buzadi","Ixtiyoriy og'iz to'la qusish ro'zani buzadi."],
+
+    // --- Zakot ---
+    ["Zakot","Zakot miqdori nisobning qancha qismi?","Qirqdan bir (2,5 foiz)","5 foiz|10 foiz|1 foiz","Pul va savdo mollaridan qirqdan bir qismi beriladi."],
+    ["Zakot","Hanafiy mazhabida oltin nisobi qancha?","Taxminan 87,48 gramm","Taxminan 20 gramm|Taxminan 50 gramm|Taxminan 200 gramm","Bu 20 misqol oltin hisoblanadi."],
+    ["Zakot","Hanafiy mazhabida kumush nisobi qancha?","Taxminan 612,36 gramm","Taxminan 87,48 gramm|Taxminan 200 gramm|Taxminan 1000 gramm","Bu 200 dirham kumushga teng."],
+    ["Zakot","Zakot farz bo'lishi uchun nisobdan qancha vaqt o'tishi kerak?","To'liq bir yil","Bir oy|Olti oy|Uch yil","Bunga hol yili deyiladi."],
+    ["Zakot","Qur'onda zakot oluvchi nechta toifa sanalgan?","8","5|7|10","Tavba surasining 60-oyatida sanab o'tilgan."],
+    ["Zakot","Hanafiy mazhabida zakotni ota-onaga berish mumkinmi?","Mumkin emas","Mumkin|Faqat onaga mumkin|Yarmini berish mumkin","Ota-ona, bobo-buvi va farzandlarga zakot berilmaydi."],
+    ["Zakot","Hanafiy mazhabida yomg'ir suvi bilan sug'orilgan yer hosilidan nima beriladi?","Ushr, ya'ni o'ndan bir","Yigirmadan bir|Qirqdan bir|Beshdan bir","Sun'iy sug'orilsa yarim ushr beriladi."],
+    ["Zakot","Zakot so'zining lug'aviy ma'nosi nima?","Poklanish va o'sish","Sabr|Tavba|Ro'za","Zakot mol va nafsni poklaydi."],
+    ["Zakot","Zakot kimga farz?","Nisobga ega bo'lgan oqil, balog'atli musulmonga","Barcha musulmonga|Faqat savdogarga|Faqat erkaklarga","Nisobga to'liq bir yil egalik qilgan kishiga farz."],
+    ["Zakot","Islom ustunlarida zakot nechanchi o'rinda keladi?","Uchinchi","Birinchi|To'rtinchi|Beshinchi","Shahodat, namoz, zakot, ro'za va haj tartibida."],
+
+    // --- Haj ---
+    ["Haj","Haj umrda necha marta farz?","Bir marta","Ikki marta|Uch marta|Har yili","Shartlari bo'lgan kishiga umrda bir marta farz."],
+    ["Haj","Ka'ba qaysi shaharda joylashgan?","Makka","Madina|Quddus|Toif","Ka'ba Masjidul Harom markazidadir."],
+    ["Haj","Arafot kuni qaysi sanaga to'g'ri keladi?","9 Zulhijja","8 Zulhijja|10 Zulhijja|1 Muharram","Arafotda turish hajning asosiy rukni."],
+    ["Haj","Tavof necha aylanadan iborat?","7","3|5|9","Ka'ba atrofida yetti marta aylaniladi."],
+    ["Haj","Sa'y qaysi ikki joy orasida bajariladi?","Safo va Marva","Mina va Arafot|Uhud va Quba|Makka va Madina","Hojar onamiz xotirasiga yetti marta qatnaladi."],
+    ["Haj","Hanafiy mazhabida hajning qaysi turi afzal?","Qiron","Ifrod|Tamattu'|Hammasi teng","Qironda haj va umra bir ihromda qilinadi."],
+    ["Haj","Hajning eng muhim rukni qaysi?","Arafotda turish","Zamzam ichish|Madinaga borish|Qurbonlik qilish","Hadisda 'Haj Arafotdir' deyilgan."],
+    ["Haj","Erkaklar ihromda nima kiyadi?","Tikilmagan ikki bo'lak mato","Oddiy kostyum|Tikilgan ko'ylak|Jun to'n","Izor va ridodan iborat."],
+    ["Haj","Hajda Minada shaytonga tosh otish nima deyiladi?","Ramyi jamarot","Tavof|Sa'y|Halq","Uchta jamarotga tosh otiladi."],
+    ["Haj","Zamzam quduqi kim bilan bog'liq?","Hojar va Ismoil alayhissalom","Sora va Ishoq alayhissalom|Nuh alayhissalom|Sulaymon alayhissalom","Zamzam Ismoil alayhissalom oyog'i ostidan chiqqan."],
+    ["Haj","Ka'bada joylashgan qora tosh qanday ataladi?","Hajarul asvad","Maqomi Ibrohim|Hijr|Multazam","Tavof shundan boshlanadi."],
+    ["Haj","Hanafiy mazhabida boy muqim kishiga qurbonlik qilish qanday hukmda?","Vojib","Farz|Sunnat|Mubox","Qurbonlik hayiti kunlarida qilinadi."],
+    ["Haj","Qurbon hayiti qaysi sanada boshlanadi?","10 Zulhijja","1 Shavvol|9 Zulhijja|12 Rabi'ul avval","Qurbon hayiti Zulhijjaning o'ninchi kuni."],
+    ["Haj","Hanafiy mazhabida umraning hukmi qanday?","Sunnati muakkada","Farz|Vojib|Mubox","Umra umrda bir marta qilinsa yetarli."],
+    ["Haj","Ka'bani kimlar qurgan?","Ibrohim va Ismoil alayhissalom","Odam alayhissalom|Nuh alayhissalom|Sulaymon alayhissalom","Qur'onda shu haqda xabar berilgan."],
+    ["Haj","Hajda aytiladigan 'Labbayk' kalimalari nima deyiladi?","Talbiya","Takbir|Tahlil|Tasbeh","Haj va umra paytida aytiladi."],
+
+    // --- Payg'ambarlar ---
+    ["Payg'ambarlar","Birinchi inson va birinchi payg'ambar kim?","Odam alayhissalom","Nuh alayhissalom|Idris alayhissalom|Ibrohim alayhissalom","Alloh Odam alayhissalomni tuproqdan yaratgan."],
+    ["Payg'ambarlar","Kema yasagan payg'ambar kim?","Nuh alayhissalom","Hud alayhissalom|Solih alayhissalom|Lut alayhissalom","Nuh alayhissalom to'fon paytida kemada najot topgan."],
+    ["Payg'ambarlar","Olovga tashlanganda olov salqin bo'lgan payg'ambar kim?","Ibrohim alayhissalom","Muso alayhissalom|Yusuf alayhissalom|Ayyub alayhissalom","Alloh olovga salqin bo'lishni buyurgan."],
+    ["Payg'ambarlar","Fir'avnga yuborilgan payg'ambar kim?","Muso alayhissalom","Iso alayhissalom|Yusuf alayhissalom|Hud alayhissalom","Muso va Horun alayhimussalom yuborilgan."],
+    ["Payg'ambarlar","Baliq qornida qolgan payg'ambar kim?","Yunus alayhissalom","Ayyub alayhissalom|Ilyos alayhissalom|Zakariyo alayhissalom","Yunus alayhissalom tavba qilib najot topgan."],
+    ["Payg'ambarlar","Og'ir kasallikda sabr qilgan payg'ambar kim?","Ayyub alayhissalom","Yusuf alayhissalom|Dovud alayhissalom|Hud alayhissalom","Ayyub alayhissalom sabr timsolidir."],
+    ["Payg'ambarlar","Qushlar tilini bilgan va jinlarga hukmdor bo'lgan payg'ambar kim?","Sulaymon alayhissalom","Dovud alayhissalom|Yusuf alayhissalom|Muso alayhissalom","Alloh unga bu mo'jizani bergan."],
+    ["Payg'ambarlar","Quduqqa tashlangan, keyin Misrda aziz bo'lgan payg'ambar kim?","Yusuf alayhissalom","Ibrohim alayhissalom|Lut alayhissalom|Ismoil alayhissalom","Uning qissasi Yusuf surasida bayon qilingan."],
+    ["Payg'ambarlar","Solih alayhissalomning mo'jizasi nima edi?","Tuya","Asa|Kema|Olov","Tuya Allohning mo'jizasi sifatida chiqarilgan."],
+    ["Payg'ambarlar","Od qavmiga yuborilgan payg'ambar kim?","Hud alayhissalom","Solih alayhissalom|Shuayb alayhissalom|Lut alayhissalom","Hud surasi uning nomi bilan atalgan."],
+    ["Payg'ambarlar","Madyan ahliga yuborilgan payg'ambar kim?","Shuayb alayhissalom","Hud alayhissalom|Yusuf alayhissalom|Yunus alayhissalom","Shuayb alayhissalom o'lchov-tarozida adolatga chaqirgan."],
+    ["Payg'ambarlar","Otasiz tug'ilgan payg'ambar kim?","Iso alayhissalom","Yahyo alayhissalom|Yusuf alayhissalom|Ismoil alayhissalom","Iso alayhissalom Maryamdan Alloh amri bilan tug'ilgan."],
+    ["Payg'ambarlar","'Xalilulloh' laqabi qaysi payg'ambarga berilgan?","Ibrohim alayhissalom","Muso alayhissalom|Nuh alayhissalom|Iso alayhissalom","Xalilulloh, ya'ni Allohning do'sti."],
+    ["Payg'ambarlar","'Kalimulloh' laqabi qaysi payg'ambarga berilgan?","Muso alayhissalom","Ibrohim alayhissalom|Iso alayhissalom|Odam alayhissalom","Alloh u bilan so'zlashgan."],
+    ["Payg'ambarlar","Muhammad sollallohu alayhi vasallam qaysi shaharda tug'ilgan?","Makka","Madina|Toif|Quddus","Fil yilida Makkada tug'ilganlar."],
+    ["Payg'ambarlar","Payg'ambarimizning otalari kim?","Abdulloh","Abdulmuttalib|Abu Tolib|Abu Lahab","Abdulloh Payg'ambarimiz tug'ilmasdan oldin vafot etgan."],
+    ["Payg'ambarlar","Payg'ambarimizning onalari kim?","Omina binti Vahb","Xadija|Halima|Fotima","Omina binti Vahb Makkada, Quraysh qabilasidan edi."],
+    ["Payg'ambarlar","Birinchi vahiy qaysi g'orda kelgan?","Hiro g'orida","Savr g'orida|Uhud g'orida|Arafot g'orida","Hiro Nur tog'ida joylashgan."],
+    ["Payg'ambarlar","Payg'ambarimizga vahiy necha yoshida kela boshlagan?","40 yoshda","25 yoshda|30 yoshda|63 yoshda","Ramazon oyida birinchi oyatlar nozil bo'lgan."],
+    ["Payg'ambarlar","Hijrat qaysi shaharlar orasida bo'lgan?","Makkadan Madinaga","Madinadan Makkaga|Makkadan Quddusga|Makkadan Toifga","Bu hijriy yil boshi bo'lgan."],
+    ["Payg'ambarlar","Mi'roj kechasida Payg'ambarimiz Makkadan avval qayerga olib borilgan?","Masjidul Aqsoga","Madinaga|Tabukka|Qubaga","Keyin yetti osmonga ko'tarilganlar."],
+    ["Payg'ambarlar","Mi'roj sovg'asi sifatida nima farz qilingan?","Besh vaqt namoz","Ro'za|Zakot|Haj","Avval ellik vaqt, keyin besh vaqtga tushirilgan."],
+    ["Payg'ambarlar","Payg'ambarimiz qaysi shaharda vafot etgan?","Madina","Makka|Toif|Quddus","Ular Madinada 63 yoshda vafot etganlar."],
+    ["Payg'ambarlar","Payg'ambarimizning birinchi turmush o'rtog'i kim?","Xadija binti Xuvaylid","Oisha|Hafsa|Zaynab","Xadija onamiz birinchi iymon keltirgan ayoldir."],
+    ["Payg'ambarlar","Yusuf alayhissalomning otasi kim?","Yaqub alayhissalom","Ishoq alayhissalom|Ismoil alayhissalom|Ibrohim alayhissalom","Yaqub alayhissalom o'n ikki o'g'ilning otasi."],
+    ["Payg'ambarlar","Muso alayhissalom Alloh bilan qaysi tog'da so'zlashgan?","Tur tog'ida","Uhud tog'ida|Nur tog'ida|Arafot tog'ida","Tur tog'i Qur'onda tilga olingan."],
+    ["Payg'ambarlar","Jolutni mag'lub etgan payg'ambar kim?","Dovud alayhissalom","Sulaymon alayhissalom|Yusuf alayhissalom|Yahyo alayhissalom","Dovud yosh paytida Jolutni yengib, keyin podshoh bo'lgan."],
+
+    // --- Sahobalar ---
+    ["Sahobalar","Birinchi xalifa kim?","Abu Bakr Siddiq","Umar ibn Xattob|Usmon ibn Affon|Ali ibn Abu Tolib","Payg'ambarimizdan keyin ummatni Abu Bakr boshqargan."],
+    ["Sahobalar","Ikkinchi xalifa kim?","Umar ibn Xattob","Abu Bakr Siddiq|Usmon ibn Affon|Ali ibn Abu Tolib","Umar roziyallohu anhuning laqabi 'Foruq'."],
+    ["Sahobalar","Uchinchi xalifa kim?","Usmon ibn Affon","Umar ibn Xattob|Ali ibn Abu Tolib|Abu Ubayda","Usmon 'Zinnurayn' laqabi bilan mashhur."],
+    ["Sahobalar","To'rtinchi xalifa kim?","Ali ibn Abu Tolib","Usmon ibn Affon|Umar ibn Xattob|Abu Bakr Siddiq","Ali Payg'ambarimizning amakivachchasi va kuyovi."],
+    ["Sahobalar","'Foruq' laqabi kimga berilgan?","Umar ibn Xattobga","Abu Bakrga|Usmonga|Aliga","Foruq haq bilan botilni ajratuvchi degani."],
+    ["Sahobalar","'Zinnurayn' (ikki nur sohibi) laqabi kimga berilgan?","Usmon ibn Affonga","Aliga|Umarga|Abu Bakrga","Ikki qizini Payg'ambarimizga nikohlaganligi uchun."],
+    ["Sahobalar","Islomning birinchi muazzini kim?","Bilol Habashiy","Abdulloh ibn Mas'ud|Salmon Forsiy|Abu Zarr","Bilol roziyallohu anhu Ka'ba ustida ham azon aytgan."],
+    ["Sahobalar","'Sayfulloh' (Allohning qilichi) laqabi kimga berilgan?","Xolid ibn Validga","Hamzaga|Aliga|Sa'd ibn Abu Vaqqosga","Xolid ibn Valid ko'plab janglarda g'olib bo'lgan."],
+    ["Sahobalar","'Asadulloh' (Allohning sheri) laqabi kimga berilgan?","Hamza ibn Abdulmuttalibga","Xolid ibn Validga|Umarga|Aliga","Hamza Uhud jangida shahid bo'lgan."],
+    ["Sahobalar","Eng ko'p hadis rivoyat qilgan sahoba kim?","Abu Hurayra","Anas ibn Molik|Abdulloh ibn Umar|Jobir ibn Abdulloh","Abu Hurayradan minglab hadis rivoyat qilingan."],
+    ["Sahobalar","Qur'on mushaflarini ko'paytirib, o'lkalarga yuborgan xalifa kim?","Usmon ibn Affon","Umar ibn Xattob|Abu Bakr Siddiq|Ali ibn Abu Tolib","Usmon mushafi shu tarzda tarqalgan."],
+    ["Sahobalar","Xandaq jangida xandaq qazish fikrini kim bergan?","Salmon Forsiy","Bilol Habashiy|Xolid ibn Valid|Abu Zarr","Bu Fors urushlaridagi usul edi."],
+    ["Sahobalar","Vahiy kotiblaridan biri bo'lgan sahoba kim?","Zayd ibn Sobit","Abu Lahab|Ikrima|Abu Sufyon","Zayd ibn Sobit Qur'onni jamlashda ishtirok etgan."],
+    ["Sahobalar","Fotima roziyallohu anho kim?","Payg'ambarimizning qizlari","Payg'ambarimizning onalari|Payg'ambarimizning enagalari|Payg'ambarimizning singillari","Fotima Alining rafiqasi edi."],
+    ["Sahobalar","Hijriy yil hisobini joriy qilgan xalifa kim?","Umar ibn Xattob","Abu Bakr Siddiq|Usmon ibn Affon|Ali ibn Abu Tolib","Hijriy yil Hijrat yilidan boshlangan."],
+    ["Sahobalar","Oisha roziyallohu anho kimning qizi?","Abu Bakr Siddiqning","Umarning|Usmonning|Alining","Oisha onamiz Payg'ambarimizning rafiqalaridan edi."],
+    ["Sahobalar","Madinaga kelgan Payg'ambarimiz kimning uyida mehmon bo'lgan?","Abu Ayyub Ansoriyning","Abu Bakrning|Alining|Bilolning","Ular tuyalari to'xtagan joydagi uyga tushganlar."],
+    ["Sahobalar","Madinaga birinchi bo'lib yuborilgan elchi kim?","Mus'ab ibn Umayr","Bilol ibn Rabah|Xolid ibn Valid|Zayd ibn Sobit","U Madinada islomni yoygan."],
+    ["Sahobalar","'Ummatning bilimdoni va Qur'on tarjimoni' deb tanilgan sahoba kim?","Abdulloh ibn Abbos","Abu Hurayra|Salmon Forsiy|Bilol","Abdulloh ibn Abbos Payg'ambarimizning amakivachchasi."],
+    ["Sahobalar","'Ummatning omini' laqabi kimga berilgan?","Abu Ubayda ibn Jarrohga","Xolid ibn Validga|Sa'd ibn Abu Vaqqosga|Umarga","Ishonchli, halol inson ma'nosini bildiradi."],
+    ["Sahobalar","Hayoti davomida jannat bashorati berilgan o'n sahoba nima deb ataladi?","Ashara mubashshara","Ahli Badr|Muhojirin|Ansor","Ularga hayotlikda jannat xushxabari berilgan."],
+
+    // --- Qur'on ---
+    ["Qur'on","Qur'onda nechta sura bor?","114","99|110|120","Qur'onda 114 ta sura mavjud."],
+    ["Qur'on","Qur'onning birinchi surasi qaysi?","Fotiha","Baqara|Ixlos|Nos","Fotiha namozning har rakatida o'qiladi."],
+    ["Qur'on","Qur'onning oxirgi surasi qaysi?","Nos","Falaq|Ixlos|Kavsar","Nos 114-sura."],
+    ["Qur'on","Qur'onning eng uzun surasi qaysi?","Baqara","Oli Imron|Niso|Moida","Baqara 286 oyatdan iborat."],
+    ["Qur'on","Qur'onning eng qisqa surasi qaysi?","Kavsar","Ixlos|Asr|Nos","Kavsar uch oyatdan iborat."],
+    ["Qur'on","Qur'on necha juzdan iborat?","30","20|40|114","Bu Ramazonda bir oyda xatm qilishga qulay."],
+    ["Qur'on","Qur'on qaysi oyda nozil bo'la boshlagan?","Ramazon","Muharram|Rajab|Zulhijja","Laylatul qadrda nozil bo'la boshlagan."],
+    ["Qur'on","Qur'onning birinchi nozil bo'lgan oyatlari qaysi suradan?","Alaq surasi","Fotiha surasi|Baqara surasi|Muddassir surasi","'Iqro' so'zi bilan boshlanadi."],
+    ["Qur'on","Eng ulug' oyat deb nomlangan oyat qaysi?","Oyatul Kursiy","Oyatush shahodat|Oyatul Hajj|Oyatud dayn","Baqara surasining 255-oyati."],
+    ["Qur'on","Qaysi surada 'Bismillah' boshida kelmaydi?","Tavba surasi","Naml surasi|Fil surasi|Qadr surasi","Naml surasida esa ichida ham kelgan."],
+    ["Qur'on","Fotiha surasi necha oyatdan iborat?","7","5|6|9","Fotihaga 'Sab'ul masoniy' ham deyiladi."],
+    ["Qur'on","Qur'on necha yilda nozil bo'lgan?","Taxminan 23 yilda","Bir kechada|10 yilda|40 yilda","Makkada va Madinada bosqichma-bosqich."],
+    ["Qur'on","Qur'onni yod olgan kishi nima deyiladi?","Hofiz","Imom|Muazzin|Muftiy","Hofiz Qur'onni to'liq yoddan biladi."],
+    ["Qur'on","Qur'on qaysi tilda nozil bo'lgan?","Arab tilida","Fors tilida|Ibroniy tilida|Suryoniy tilida","Qur'on arabiy lisondadir."],
+    ["Qur'on","Falaq va Nos suralari birgalikda nima deyiladi?","Muavvizatayn","Zahravayn|Musabbihot|Hamim","Panoh so'rash suralari."],
+    ["Qur'on","Chumoli nomi bilan atalgan sura qaysi?","Naml","Fil|Ankabut|Nahl","Naml surasida Sulaymon alayhissalom qissasi bor."],
+    ["Qur'on","Fil surasi qaysi voqeani bayon qiladi?","Abraha qo'shinining halok bo'lishi","Nuh to'fonini|Hijratni|Badr jangini","Fil voqeasi Payg'ambarimiz tug'ilgan yilda bo'lgan."],
+    ["Qur'on","Ixlos surasi necha oyatdan iborat?","4","3|5|6","Ixlos Alloh birligini bayon qiladi."],
+    ["Qur'on","Hadisda Qur'onning uchdan biriga tenglashtirilgan sura qaysi?","Ixlos","Kavsar|Nos|Asr","Ixlos surasi tavhidni bayon qilgani uchun."],
+    ["Qur'on","Qur'onning boshqa nomlaridan biri qaysi?","Furqon","Zabur|Injil|Tavrot","Furqon haq va botilni ajratuvchi degani."],
+    ["Qur'on","Qur'on qiroatining qoidalarini o'rgatadigan ilm qanday ataladi?","Tajvid","Nahv|Aruz|Mantiq","Tajvid harflarni to'g'ri talaffuz qilishni o'rgatadi."],
+    ["Qur'on","Qur'onda eng ko'p tilga olingan payg'ambar kim?","Muso alayhissalom","Ibrohim alayhissalom|Iso alayhissalom|Nuh alayhissalom","Muso alayhissalom qissasi ko'p suralarda bor."],
+    ["Qur'on","Baqara surasi necha oyatdan iborat?","286","200|114|300","Baqara Qur'onning eng uzun surasi."],
+
+    // --- Hadis va ulamolar ---
+    ["Hadis","Eng sahih hadislar to'plami hisoblangan kitob qaysi?","Sahihul Buxoriy","Sunani Termiziy|Sunani Ibn Moja|Muvatto","Imom Buxoriy tomonidan yig'ilgan."],
+    ["Hadis","Imom Buxoriy qaysi shaharda tug'ilgan?","Buxoro","Samarqand|Termiz|Nishopur","Buxoro Imom Buxoriy nomi bilan mashhur."],
+    ["Hadis","Imom Termiziy qaysi shaharda tug'ilgan?","Termiz","Buxoro|Nishopur|Marv","'Jome'ut Termiziy' muallifi."],
+    ["Hadis","Sahihul Muslim muallifi qaysi shaharlik?","Nishopur","Buxoro|Termiz|Samarqand","Imom Muslim ibn Hajjoj Nishopurlik."],
+    ["Hadis","Hadis kitoblaridan 'Kutubi sitta' nechta kitobni o'z ichiga oladi?","6","4|5|7","Oltita mashhur hadis to'plami."],
+    ["Hadis","Hadis nima?","Payg'ambarimizning so'zi, ishi va taqriri","Faqat Qur'on oyati|Faqat sahobalar so'zi|Faqat duolar","Taqrir ularning ko'rib jim turishi."],
+    ["Hadis","'Amallar niyatga ko'radir' hadisi qanday boshlanadi?","Innamal a'malu binniyot","Man kana yu'minu|Atta'hurush shatril iymon|Iqra'","Bu hadis ko'p kitoblarda birinchi hadisdir."],
+    ["Hadis","'Tabassum ......' hadisini yakunlang.","Sadaqadir","Nafldir|Farzdir|Ro'zadir","Birodaringga tabassum qilish sadaqadir."],
+    ["Hadis","Hadisda iymonning yarmi nima deb aytilgan?","Tozalik (tahorat)","Namoz|Ro'za|Zakot","Muslim rivoyati: tozalik iymonning yarmidir."],
+    ["Hadis","Hanafiy mazhabining asoschisi kim?","Imom A'zam Abu Hanifa","Imom Molik|Imom Shofi'iy|Imom Ahmad","Asl ismi No'mon ibn Sobit."],
+    ["Hadis","Imom Abu Hanifaning asl ismi nima?","No'mon ibn Sobit","Muhammad ibn Idris|Molik ibn Anas|Ahmad ibn Hanbal","U Kufada tug'ilgan."],
+    ["Hadis","Imom Abu Hanifa qaysi shaharda tug'ilgan?","Kufa","Madina|Bag'dod|Makka","Kufa Iroqdagi shahar."],
+    ["Hadis","Abu Hanifaning mashhur shogirdlari kimlar?","Abu Yusuf va Muhammad Shaybaniy","Imom Buxoriy va Muslim|Shofi'iy va Ahmad|Termiziy va Nasoiy","Ular Hanafiy mazhabini keng tarqatgan."],
+    ["Hadis","Molikiy mazhabi asoschisi kim?","Molik ibn Anas","Muhammad ibn Idris|Ahmad ibn Hanbal|Abu Yusuf","Imom Molik Madinada yashagan."],
+    ["Hadis","Shofi'iy mazhabi asoschisi kim?","Muhammad ibn Idris ash-Shofi'iy","Molik ibn Anas|Ahmad ibn Hanbal|Abu Hanifa","Shofi'iy Imom Molikning shogirdi."],
+    ["Hadis","Hanbaliy mazhabi asoschisi kim?","Ahmad ibn Hanbal","Molik ibn Anas|Abu Hanifa|Imom Shofi'iy","Bag'dodda yashagan."],
+    ["Hadis","Fiqhdagi mashhur mazhablar soni nechta?","4","3|5|7","Hanafiy, Molikiy, Shofi'iy va Hanbaliy."],
+    ["Hadis","'Hidoya' kitobining muallifi kim?","Burhoniddin Marg'inoniy","Imom Buxoriy|Imom Moturidiy|Al-Xorazmiy","Marg'inoniy Farg'onaning Marg'ilon shahridan."],
+    ["Hadis","Imom Buxoriyning mashhur kitobi qaysi?","Al-Jome' as-sahih","Al-Muvatto|Al-Musnad|Ar-Risola","Odatda Sahihul Buxoriy deb ataladi."],
+    ["Hadis","Imom Buxoriy qabri qayerda joylashgan?","Samarqand yaqinidagi Xartangda","Buxoroda|Madinada|Bag'dodda","Xartang hozirda Imom Buxoriy majmuasi."],
+    ["Hadis","'Muxtasarul Qudoriy' qaysi mazhabning mashhur fiqh matni?","Hanafiy","Molikiy|Shofi'iy|Hanbaliy","Qudoriy Hanafiy fiqhining asosiy matnlaridan."],
+    ["Hadis","'Sizlarning eng yaxshingiz ......' hadisini yakunlang.","Qur'onni o'rgangan va o'rgatganingizdir","Ko'p mol yiqqaningizdir|Eng ko'p ro'za tutganingizdir|Eng baland gapirganingizdir","Imom Buxoriy rivoyat qilgan."],
+
+    // --- Islom tarixi ---
+    ["Tarix","Hijriy yil hisobi qaysi voqeadan boshlanadi?","Payg'ambarimizning hijratidan","Tug'ilishlaridan|Vahiy kelishidan|Makka fathidan","Hijrat milodiy 622 yilga to'g'ri keladi."],
+    ["Tarix","Hijriy yilning birinchi oyi qaysi?","Muharram","Ramazon|Rajab|Safar","Hijriy yil 12 oydan iborat."],
+    ["Tarix","Badr jangi qaysi hijriy yilda bo'lgan?","2-hijriy yilda","1-hijriy yilda|5-hijriy yilda|8-hijriy yilda","Ramazon oyining 17-kuni bo'lgan."],
+    ["Tarix","Badr jangida musulmonlar soni taxminan qancha edi?","313 kishi","100 kishi|1000 kishi|3000 kishi","Musulmonlar oz edi, lekin g'alaba qozonishdi."],
+    ["Tarix","Uhud jangi qaysi hijriy yilda bo'lgan?","3-hijriy yilda","1-hijriy yilda|5-hijriy yilda|8-hijriy yilda","Hamza roziyallohu anhu shu jangda shahid bo'lgan."],
+    ["Tarix","Xandaq jangi qaysi hijriy yilda bo'lgan?","5-hijriy yilda","2-hijriy yilda|3-hijriy yilda|8-hijriy yilda","Madina atrofiga xandaq qazilgan."],
+    ["Tarix","Makka fathi qaysi hijriy yilda bo'lgan?","8-hijriy yilda","6-hijriy yilda|2-hijriy yilda|10-hijriy yilda","Makka deyarli qon to'kilmasdan fath etilgan."],
+    ["Tarix","Hudaybiya sulhi qaysi hijriy yilda tuzilgan?","6-hijriy yilda","2-hijriy yilda|8-hijriy yilda|10-hijriy yilda","Sulh Makka fathiga yo'l ochgan."],
+    ["Tarix","Madinaning qadimgi nomi nima edi?","Yasrib","Toif|Bakka|Quba","Hijratdan keyin Madinatun Nabiy deb atalgan."],
+    ["Tarix","Islomdagi birinchi masjid qaysi?","Quba masjidi","Masjidi Nabaviy|Masjidul Aqso|Masjidul Haram","Hijrat paytida Madina yaqinida qurilgan."],
+    ["Tarix","Vidolashuv haji qaysi hijriy yilda bo'lgan?","10-hijriy yilda","6-hijriy yilda|8-hijriy yilda|12-hijriy yilda","Payg'ambarimiz shu hajda mashhur xutbalarini aytganlar."],
+    ["Tarix","Abraha filli qo'shini qaysi yilda halok bo'lgan?","Payg'ambarimiz tug'ilgan yilda","Hijrat yilida|Badr yilida|Makka fathi yilida","Shuning uchun u 'Fil yili' deyiladi."],
+    ["Tarix","Payg'ambarimiz qaysi qabiladan edilar?","Quraysh","Xazroj|Aws|Tamim","Quraysh Makkadagi mashhur qabila."],
+    ["Tarix","Umaviylar xalifaligining poytaxti qaysi shahar edi?","Damashq","Bag'dod|Makka|Qohira","Bu xalifalik Mu'oviya davrida boshlangan."],
+    ["Tarix","Abbosiylar xalifaligining poytaxti qaysi shahar edi?","Bag'dod","Damashq|Madina|Samarqand","Bag'dodda 'Bayt ul-hikma' bo'lgan."],
+    ["Tarix","Xulafoi roshidinlar soni nechta?","4","3|5|10","Abu Bakr, Umar, Usmon va Ali."],
+    ["Tarix","Usmon mushafi hozirda qayerda saqlanadi?","Toshkentdagi Hazrati Imom majmuasida","Samarqandda|Buxoroda|Madinada","U Muyi Muborak madrasasida saqlanadi."],
+    ["Tarix","Algebra faniga asos solgan buyuk alloma kim?","Al-Xorazmiy","Ibn Sino|Beruniy|Al-Farg'oniy","Al-Xorazmiy Xorazmda tug'ilgan."],
+    ["Tarix","'Tib qonunlari' asari muallifi kim?","Ibn Sino","Beruniy|Al-Xorazmiy|Ulug'bek","Ibn Sino Buxoro yaqinidagi Afshonada tug'ilgan."],
+    ["Tarix","Samarqandda mashhur rasadxona qurdirgan olim-hukmdor kim?","Mirzo Ulug'bek","Amir Temur|Bobur|Alisher Navoiy","Ulug'bek astronomiyaga katta hissa qo'shgan."],
+    ["Tarix","Naqshbandiya tariqati asoschisi Bahouddin Naqshband qaysi shaharda yashagan?","Buxoro","Samarqand|Toshkent|Xiva","Qasri Orifon qishlog'ida dafn etilgan."],
+    ["Tarix","Ahmad Yassaviy qaysi shaharda dafn etilgan?","Turkiston","Buxoro|Samarqand|Xiva","Turkistondagi maqbarasi mashhur."],
+    ["Tarix","Quddusni 1187 yilda salibchilardan qaytarib olgan sarkarda kim?","Salohiddin Ayyubiy","Fotih Sulton Mehmed|Zahiriddin Bobur|Mahmud G'aznaviy","Hittin jangidan keyin Quddus ozod etilgan."],
+    ["Tarix","Konstantinopolni 1453 yilda fath etgan sultan kim?","Fotih Sulton Mehmed","Salohiddin Ayyubiy|Sulaymon Qonuniy|Bayazid","Shahar keyin Istanbul deb atalgan."]
+  ];
+
+  /* ===== Yordamchi funksiyalar ===== */
+  function lsGet(k, d) { try { var v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } }
+  function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+  function norm(s) { return String(s).toLowerCase().replace(/[ʻʼ’`‘']/g, "").replace(/[^a-z0-9Ѐ-ӿ ]+/g, " ").replace(/\s+/g, " ").trim(); }
+  function hash(s) { var h = 5381, i; for (i = 0; i < s.length; i++) { h = ((h << 5) + h + s.charCodeAt(i)) | 0; } return (h >>> 0).toString(36); }
+  function shuffle(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+  function $(id) { return document.getElementById(id); }
+
+  /* ===== Savollar ombori (takrorlarsiz) ===== */
+  var pool = {};     // id -> savol
+  var seen = {};     // ko'rilgan id lar
+  var lastId = null, lastCat = null;
+
+  (lsGet(KEY.seen, []) || []).forEach(function (id) { seen[id] = 1; });
+
+  function addQuestion(o) {
+    if (!o || typeof o.q !== "string" || typeof o.a !== "string" || !Array.isArray(o.w)) return false;
+    var wrong = o.w.filter(function (x, i, arr) { return typeof x === "string" && x !== o.a && arr.indexOf(x) === i; });
+    if (wrong.length < 3) return false;
+    var id = hash(norm(o.q));
+    if (pool[id]) return false;
+    pool[id] = { id: id, c: o.c || "Umumiy", q: o.q, a: o.a, w: wrong.slice(0, 3), e: o.e || "" };
+    return true;
+  }
+  D.forEach(function (r) { addQuestion({ c: r[0], q: r[1], a: r[2], w: r[3].split("|"), e: r[4] }); });
+
+  var fetching = false;
+  function loadRemote() {
+    if (fetching || !REMOTE_SOURCES.length || !window.fetch) return Promise.resolve();
+    fetching = true;
+    var jobs = REMOTE_SOURCES.map(function (url) {
+      var ctl = window.AbortController ? new AbortController() : null;
+      var timer = setTimeout(function () { if (ctl) ctl.abort(); }, 6000);
+      return fetch(url, ctl ? { signal: ctl.signal } : {})
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (list) { if (Array.isArray(list)) list.forEach(addQuestion); })
+        .catch(function () {})  // xato foydalanuvchiga ko'rsatilmaydi
+        .then(function () { clearTimeout(timer); });
+    });
+    return Promise.all(jobs).then(function () { fetching = false; updateCount(); });
+  }
+
+  function allIds() { return Object.keys(pool); }
+  function unseenIds() { return allIds().filter(function (id) { return !seen[id]; }); }
+
+  function pickNext() {
+    var ids = unseenIds();
+    if (ids.length < 8) loadRemote();
+    if (!ids.length) { seen = {}; lsSet(KEY.seen, []); ids = allIds(); }   // savollar tugamaydi: aylanib qaytadi
+    var cand = ids.filter(function (id) { return id !== lastId; });
+    if (!cand.length) cand = ids;
+    var varied = cand.filter(function (id) { return pool[id].c !== lastCat; });  // bo'limlar ketma-ket takrorlanmasin
+    if (varied.length) cand = varied;
+    var id = cand[Math.floor(Math.random() * cand.length)];
+    seen[id] = 1;
+    lsSet(KEY.seen, Object.keys(seen));
+    lastId = id; lastCat = pool[id].c;
+    return pool[id];
+  }
+
+  /* ===== Holat va ko'rinish ===== */
+  var score = 0, streak = 0, answered = true, shown = 0;
+  var best = +lsGet(KEY.best, 0) || 0, bestStreak = +lsGet(KEY.bestStreak, 0) || 0;
+  var cur = null, order = [];
+
+  function bump(el) { el.classList.remove("pop"); void el.offsetWidth; el.classList.add("pop"); }
+  function paintStats(animate) {
+    $("score").textContent = score; $("streak").textContent = streak; $("best").textContent = best;
+    if (animate) { bump($("score")); if (streak) bump($("streak")); }
+  }
+  function updateCount() {
+    var total = allIds().length, done = total - unseenIds().length;
+    $("count").textContent = "Savol " + shown + " · tur: " + done + "/" + total;
+    $("bar").style.width = (total ? Math.round(done / total * 100) : 0) + "%";
+  }
+
+  function render(q) {
+    cur = q; answered = false; shown++;
+    $("cat").textContent = q.c;
+    $("q").textContent = q.q;
+    $("explain").classList.remove("show");
+    var box = $("answers"); box.innerHTML = "";
+    order = shuffle([q.a].concat(q.w));
+    order.forEach(function (text, i) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "ans"; b.setAttribute("data-i", i);
+      b.innerHTML = '<span class="k">' + "ABCD"[i] + '</span><span class="t"></span>';
+      b.lastChild.textContent = text;
+      b.addEventListener("click", function () { choose(i); });
+      box.appendChild(b);
+    });
+    updateCount();
+    var card = $("card"); card.classList.remove("swap-in"); void card.offsetWidth; card.classList.add("swap-in");
+  }
+
+  function choose(i) {
+    if (answered) return;
+    answered = true;
+    var btns = $("answers").children, ok = order[i] === cur.a;
+    for (var k = 0; k < btns.length; k++) {
+      btns[k].disabled = true;
+      if (order[k] === cur.a) btns[k].classList.add("correct");
+      else if (k === i) btns[k].classList.add("wrong");
+      else btns[k].classList.add("dim");
+    }
+    if (ok) {
+      streak++; score += POINTS + Math.min(streak - 1, 5) * 2;
+      if (score > best) { best = score; lsSet(KEY.best, best); }
+      if (streak > bestStreak) { bestStreak = streak; lsSet(KEY.bestStreak, bestStreak); }
+    } else { streak = 0; }
+    paintStats(true);
+    $("expText").innerHTML = "<strong>" + (ok ? "To'g'ri! " : "Noto'g'ri. To'g'ri javob: " + escapeHtml(cur.a) + ". ") + "</strong>" + escapeHtml(cur.e);
+    $("explain").classList.add("show");
+    $("next").focus({ preventScroll: true });
+  }
+  function escapeHtml(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+
+  function next() {
+    if (!answered) return;
+    var card = $("card"); card.classList.add("swap-out");
+    setTimeout(function () { card.classList.remove("swap-out"); render(pickNext()); window.scrollTo({ top: 0, behavior: "smooth" }); }, 200);
+  }
+  $("next").addEventListener("click", next);
+  document.addEventListener("keydown", function (e) {
+    if (e.key >= "1" && e.key <= "4") choose(+e.key - 1);
+    else if ((e.key === "Enter" || e.key === " ") && answered && document.activeElement !== $("next")) { e.preventDefault(); next(); }
+  });
+
+  /* ===== Ishga tushirish ===== */
+  paintStats(false);
+  var start = Date.now();
+  loadRemote().then(function () {
+    var wait = Math.max(0, 900 - (Date.now() - start));
+    setTimeout(function () { render(pickNext()); $("loader").classList.add("done"); }, wait);
+  });
+})();
+</script>
+
+</body></html>
